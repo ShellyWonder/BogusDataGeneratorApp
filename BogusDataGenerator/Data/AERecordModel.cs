@@ -27,8 +27,8 @@ namespace BogusDataGenerator.Data
         public string? Email { get; set; }
         public string? Phone { get; set; }
 
-        [Display(Name = "Office Street Address")]
-        public string? HomeOfficeStreetAddress { get; set; }
+        [Display(Name = "Corporate Address")]
+        public string? CorporateAddress { get; set; }
         public string? City { get; set; }
         public string? State { get; set; }
         public string? ZipCode { get; set; }

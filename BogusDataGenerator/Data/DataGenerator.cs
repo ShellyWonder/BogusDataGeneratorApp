@@ -19,19 +19,19 @@ namespace BogusDataGenerator.Data
             .RuleFor(ae => ae.LastName, f => f.Name.LastName())
             .RuleFor(ae => ae.JobTitle, f => f.Name.JobTitle())
             .RuleFor(ae => ae.Email, f => f.Internet.Email())
-            .RuleFor(ae => ae.Phone, f => f.Phone.PhoneNumber())
-            .RuleFor(ae => ae.HomeOfficeStreetAddress, f => f.Address.StreetAddress())
+            .RuleFor(ae => ae.Phone, f => f.Phone.PhoneNumber("###.###.####"))
+            .RuleFor(ae => ae.CorporateAddress, f => f.Address.StreetAddress())
             .RuleFor(ae => ae.City, f => f.Address.City())
             .RuleFor(ae => ae.State, f => f.Address.StateAbbr())
             .RuleFor(ae => ae.ZipCode, f => f.Address.ZipCode())
-            .RuleFor(ae => ae.EmploymentDate, f => f.Date.Past());
+            .RuleFor(ae => ae.EmploymentDate, f => f.Date.Past().Date);
         }
         public AERecordModel GenerateAERecord()
         {
             return AERecordModelFaker.Generate();
         }
 
-        public IEnumerable<AERecordModel> GenerateAERecords(int count)
+        public IEnumerable<AERecordModel> GenerateAERecords()
         {
             return AERecordModelFaker.GenerateForever();
         }

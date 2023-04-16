@@ -28,7 +28,7 @@
                                 <th>Job Title</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Office Street Address</th>
+                                <th>Corporate Address</th>
                                 <th>City</th>
                                 <th>State</th>
                                 <th>Zip Code</th>
@@ -38,7 +38,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach (var ae in AccountExecutive)
+                            @foreach (var ae in AccountExecutiveList)
                             {
                                 <tr>
                                     <th>@ae.Id</th>
@@ -49,11 +49,11 @@
                                     <td>@ae.JobTitle</td>
                                     <td>@ae.Email</td>
                                     <td>@ae.Phone</td>
-                                    <td>@ae.HomeOfficeStreetAddress</td>
+                                    <td>@ae.CorporateAddress</td>
                                     <td>@ae.City</td>
                                     <td>@ae.State</td>
                                     <td>@ae.ZipCode</td>
-                                    <td>@ae.EmploymentDate</td>
+                                    <td>@ae.EmploymentDate.ToString("MM-dd-yyyy")</td>
 
                                 </tr>
                             }
@@ -70,10 +70,10 @@
 <button type="button" class="btn btn-outline-danger btn-primary" @onclick="LoadData">Try me!</button>
 
 @code {
-    public List<AERecordModel> AccountExecutive = new();
+    public List<AERecordModel> AccountExecutiveList = new();
     private void LoadData()
     {
-        var results = data.GenerateAERecords(60);
-        AccountExecutive.AddRange(results);
+        var results = data.GenerateAERecords().Take(60);
+        AccountExecutiveList.AddRange(results);
     }
 }
