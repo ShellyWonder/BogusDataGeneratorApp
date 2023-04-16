@@ -1,0 +1,79 @@
+﻿@page "/AccountExecutives"
+@inject DataGenerator data
+
+
+
+
+<div class="right-wrapper text-end">
+</div>
+<div class="row">
+    <div class="col-12">
+        <section class="card card-border-bkGd">
+            <header class="card-header">
+                <div class="card-actions">
+                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                </div> <h1 class="card-title">Account Executives</h1>
+            </header>
+            <div class="card-body card-bkGd">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped mb-0" id="datatable-tabletools">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>AEId</th>
+                                <th>Employee Id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Job Title</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Office Street Address</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Zip Code</th>
+                                <th>Employment Date</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var ae in AccountExecutive)
+                            {
+                                <tr>
+                                    <th>@ae.Id</th>
+                                    <td>@ae.AEId</td>
+                                    <td>@ae.EmployeeId</td>
+                                    <td>@ae.FirstName</td>
+                                    <td>@ae.LastName</td>
+                                    <td>@ae.JobTitle</td>
+                                    <td>@ae.Email</td>
+                                    <td>@ae.Phone</td>
+                                    <td>@ae.HomeOfficeStreetAddress</td>
+                                    <td>@ae.City</td>
+                                    <td>@ae.State</td>
+                                    <td>@ae.ZipCode</td>
+                                    <td>@ae.EmploymentDate</td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+<button type="button" class="btn btn-outline-danger btn-primary" @onclick="LoadData">Try me!</button>
+
+@code {
+    public List<AERecordModel> AccountExecutive = new();
+    private void LoadData()
+    {
+        var results = data.GenerateAERecords(60);
+        AccountExecutive.AddRange(results);
+    }
+}
