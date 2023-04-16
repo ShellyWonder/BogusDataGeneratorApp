@@ -12,7 +12,6 @@ namespace BogusDataGenerator.Data
 
 
             AERecordModelFaker = new Faker<AERecordModel>()
-            .RuleFor(u => u.Id, f => f.Random.Int(1, 10000))
             .RuleFor(ae => ae.AEId, f => f.Random.AlphaNumeric(6))
             .RuleFor(ae => ae.EmployeeId, f => f.Random.Number(1000, 50000).ToString())   
             .RuleFor(ae => ae.FirstName, f => f.Name.FirstName())

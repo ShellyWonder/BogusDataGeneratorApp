@@ -1,5 +1,7 @@
 ﻿@page "/AccountExecutives"
 @inject DataGenerator data
+@inject ApplicationDbContext _context
+
 
 
 
@@ -76,4 +78,23 @@
         var results = data.GenerateAERecords().Take(60);
         AccountExecutiveList.AddRange(results);
     }
+    private async Task SaveDataToDatabase()
+    {
+        // Check if the database is empty
+        bool isDatabaseEmpty = !_context.AERecords.Any();
+
+        // If the database is empty, generate and save the data
+        if (isDatabaseEmpty)
+        {
+            LoadData();
+            _context.AERecords.AddRange(AccountExecutiveList);
+            await _context.SaveChangesAsync();
+        }
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await SaveDataToDatabase();
+    }
+
+
 }
