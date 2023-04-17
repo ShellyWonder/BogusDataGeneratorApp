@@ -13,7 +13,7 @@ namespace BogusDataGenerator.Data
 
             AERecordModelFaker = new Faker<AERecordModel>()
             .RuleFor(ae => ae.AEId, f => f.Random.AlphaNumeric(6))
-            .RuleFor(ae => ae.EmployeeId, f => f.Random.Number(1000, 50000).ToString())   
+            .RuleFor(ae => ae.EmployeeId, f => f.Random.Number(1000, 50000).ToString())
             .RuleFor(ae => ae.FirstName, f => f.Name.FirstName())
             .RuleFor(ae => ae.LastName, f => f.Name.LastName())
             .RuleFor(ae => ae.JobTitle, f => f.Name.JobTitle())
@@ -23,7 +23,7 @@ namespace BogusDataGenerator.Data
             .RuleFor(ae => ae.City, f => f.Address.City())
             .RuleFor(ae => ae.State, f => f.Address.StateAbbr())
             .RuleFor(ae => ae.ZipCode, f => f.Address.ZipCode())
-            .RuleFor(ae => ae.EmploymentDate, f => f.Date.Past().Date);
+            .RuleFor(ae => ae.EmploymentDate, f => DateTime.SpecifyKind(f.Date.Past().Date, DateTimeKind.Utc));
         }
         public AERecordModel GenerateAERecord()
         {

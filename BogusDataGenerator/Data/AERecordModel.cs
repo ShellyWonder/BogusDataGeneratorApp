@@ -35,7 +35,7 @@ namespace BogusDataGenerator.Data
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime EmploymentDate { get; set; }
+        public DateTime EmploymentDate { get; set; } = DateTime.UtcNow;
     }
 
     

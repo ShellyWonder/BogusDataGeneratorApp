@@ -69,7 +69,7 @@ namespace BogusDataGenerator.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AERecords");
+                    b.ToTable("AERecords", (string)null);
                 });
 #pragma warning restore 612, 618
         }
